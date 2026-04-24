@@ -256,48 +256,64 @@ body {
   line-height: 1.4;
 }
 
-/* ── Node Palette ────────────────────────────────────────────────── */
+/* ── Node Palette — iOS-style big icon cards ────────────────────── */
 
 .node-palette {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .palette-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 13px;
-  border-radius: var(--radius-md);
-  background: var(--surface-2);
-  box-shadow: var(--neu-shadow);
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(26,71,49,.08), 0 1px 3px rgba(26,71,49,.06);
   cursor: grab;
   user-select: none;
-  transition: all .2s var(--ease);
-  border: 1.5px solid transparent;
+  transition: all .25s var(--ease);
+  border: 1.5px solid #f0f4f0;
+  position: relative;
+  overflow: hidden;
+}
+.palette-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,0));
+  pointer-events: none;
 }
 .palette-item:hover {
-  transform: translateX(4px);
+  transform: translateX(5px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(30,107,69,.14), 0 2px 8px rgba(30,107,69,.08);
   border-color: var(--green-pale);
-  background: var(--green-mint);
-  box-shadow: 0 4px 16px rgba(30,107,69,.12), var(--neu-shadow);
+  background: #f8fdf9;
 }
 .palette-item:active { cursor: grabbing; transform: scale(.97); }
 
 .palette-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  box-shadow: 0 4px 14px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.3);
+  position: relative;
+  z-index: 1;
 }
 
-.palette-label { font-size: .84rem; font-weight: 700; color: var(--text-primary); }
-.palette-desc  { font-size: .68rem; color: var(--text-muted); margin-top: 2px; }
+.palette-label {
+  font-size: .9rem;
+  font-weight: 700;
+  color: #0f1a12;
+  letter-spacing: -.3px;
+}
+.palette-desc  { font-size: .7rem; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
 
 /* ── Templates ───────────────────────────────────────────────────── */
 
@@ -750,59 +766,106 @@ body {
 .toggle-label { font-size: .8rem; color: var(--text-secondary); font-weight: 500; }
 
 /* ══════════════════════════════════════════════════════════════════════════════
-   BUTTONS
+   BUTTONS — Premium dark-green gradient with shimmer
 ══════════════════════════════════════════════════════════════════════════════ */
 
+/* ── Primary: deep forest green gradient, shimmer overlay ─────── */
 .neu-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
-  border-radius: var(--radius-sm);
-  background: var(--green-deep);
+  padding: 10px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1a4731 0%, #1e6b45 40%, #2d9059 100%);
   border: none;
-  color: white;
-  font-size: .84rem;
+  color: #ffffff;
+  font-size: .85rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(30,107,69,.35), var(--neu-shadow);
-  transition: all .2s var(--ease);
+  letter-spacing: .01em;
+  position: relative;
+  overflow: hidden;
   white-space: nowrap;
   font-family: inherit;
+  /* multi-layer shadow: deep glow + lift */
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.15) inset,
+    0 -1px 0 rgba(0,0,0,.3) inset,
+    0 4px 20px rgba(26,71,49,.45),
+    0 1px 3px rgba(0,0,0,.25);
+  transition: all .22s var(--ease);
 }
+/* shimmer pseudo-element */
+.neu-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: left .4s ease;
+}
+.neu-btn-primary:hover::before { left: 100%; }
 .neu-btn-primary:hover {
-  background: var(--green-forest);
+  background: linear-gradient(135deg, #14382a 0%, #1a5438 40%, #256848 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(30,107,69,.4), var(--neu-shadow);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.15) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset,
+    0 8px 28px rgba(26,71,49,.5),
+    0 2px 6px rgba(0,0,0,.25);
 }
-.neu-btn-primary:active { transform: translateY(0); }
+.neu-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.1) inset,
+    0 2px 0 rgba(0,0,0,.3) inset,
+    0 2px 10px rgba(26,71,49,.3);
+}
 .neu-btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
+/* ── Secondary: clean outline with green gradient hover ───────── */
 .neu-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 9px 16px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  border: 1.5px solid var(--green-pale);
-  color: var(--text-secondary);
+  padding: 9px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1.5px solid #c2dece;
+  color: #1e6b45;
   font-size: .8rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: var(--neu-shadow);
-  transition: all .2s var(--ease);
   white-space: nowrap;
   font-family: inherit;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 2px 8px rgba(26,71,49,.08),
+    0 1px 2px rgba(0,0,0,.06);
+  transition: all .22s var(--ease);
+  position: relative;
+  overflow: hidden;
 }
+.neu-btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(61,190,118,.08), rgba(30,107,69,.04));
+  opacity: 0;
+  transition: opacity .2s;
+}
+.neu-btn-secondary:hover::before { opacity: 1; }
 .neu-btn-secondary:hover {
-  color: var(--green-deep);
-  border-color: var(--green-light);
-  background: var(--green-mint);
-  box-shadow: 0 4px 12px rgba(30,107,69,.12), var(--neu-shadow);
+  border-color: var(--green-mid);
+  color: var(--green-forest);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 4px 14px rgba(30,107,69,.14),
+    0 1px 3px rgba(0,0,0,.08);
 }
+.neu-btn-secondary:active { transform: translateY(0); }
 
 /* ══════════════════════════════════════════════════════════════════════════════
    SANDBOX PANEL  — white card, forest green accents
@@ -1023,14 +1086,28 @@ body {
   text-align: center;
 }
 .result-status--ok {
-  background: var(--green-forest);
+  background: linear-gradient(135deg, #1a4731 0%, #1e6b45 45%, #2d9059 100%);
   color: white;
-  box-shadow: 0 4px 16px rgba(26,71,49,.25);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.12) inset,
+    0 6px 20px rgba(26,71,49,.35),
+    0 2px 6px rgba(0,0,0,.15);
+  letter-spacing: .02em;
+  position: relative;
+  overflow: hidden;
+}
+.result-status--ok::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
 }
 .result-status--fail {
-  background: #fee2e2;
+  background: #fff5f5;
   color: #dc2626;
   border: 1.5px solid #fecaca;
+  box-shadow: 0 2px 8px rgba(220,38,38,.1);
 }
 
 /* Spinner */
