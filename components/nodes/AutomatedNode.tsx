@@ -7,7 +7,7 @@ import { useWorkflow } from '@/context/WorkflowContext';
 import { Zap, Trash2 } from 'lucide-react';
 
 function AutomatedNode({ id, data, selected }: NodeProps) {
-  const d = data as AutomatedNodeData;
+  const d = data as unknown as AutomatedNodeData;
   const { selectNode, deleteNode } = useWorkflow();
 
   return (

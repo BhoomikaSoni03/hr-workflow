@@ -7,7 +7,7 @@ import { useWorkflow } from '@/context/WorkflowContext';
 import { ShieldCheck, Trash2 } from 'lucide-react';
 
 function ApprovalNode({ id, data, selected }: NodeProps) {
-  const d = data as ApprovalNodeData;
+  const d = data as unknown as ApprovalNodeData;
   const { selectNode, deleteNode } = useWorkflow();
 
   const roleColors: Record<string, string> = {

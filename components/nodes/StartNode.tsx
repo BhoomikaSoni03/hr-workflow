@@ -7,7 +7,7 @@ import { useWorkflow } from '@/context/WorkflowContext';
 import { Play, Trash2 } from 'lucide-react';
 
 function StartNode({ id, data, selected }: NodeProps) {
-  const d = data as StartNodeData;
+  const d = data as unknown as StartNodeData;
   const { selectNode, deleteNode } = useWorkflow();
 
   return (

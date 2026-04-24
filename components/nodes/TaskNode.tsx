@@ -7,7 +7,7 @@ import { useWorkflow } from '@/context/WorkflowContext';
 import { ClipboardList, Trash2 } from 'lucide-react';
 
 function TaskNode({ id, data, selected }: NodeProps) {
-  const d = data as TaskNodeData;
+  const d = data as unknown as TaskNodeData;
   const { selectNode, deleteNode } = useWorkflow();
 
   return (

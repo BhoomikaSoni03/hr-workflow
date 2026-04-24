@@ -7,7 +7,7 @@ import { useWorkflow } from '@/context/WorkflowContext';
 import { FlagTriangleRight, Trash2 } from 'lucide-react';
 
 function EndNode({ id, data, selected }: NodeProps) {
-  const d = data as EndNodeData;
+  const d = data as unknown as EndNodeData;
   const { selectNode, deleteNode } = useWorkflow();
 
   return (
