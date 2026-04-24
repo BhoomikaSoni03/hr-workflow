@@ -6,6 +6,22 @@ A production-grade, neumorphic HR Workflow Designer built with **Next.js 16**, *
 
 ---
 
+## 📸 App Screenshots
+
+![Homepage](public/screenshots/homepage.png)  
+*Clean white dashboard with iOS-style palette cards and premium styling.*
+
+![Canvas with nodes](public/screenshots/canvas_nodes.png)  
+*Interactive canvas where nodes have color-coded accent stripes.*
+
+![Node Edit Form](public/screenshots/form_panel.png)  
+*Slide-in editing form with neumorphic inputs and dark green badges.*
+
+![Simulation Results](public/screenshots/simulation.png)  
+*Built-in sandbox simulation engine with live graph validation.*
+
+---
+
 ## ✨ Features
 
 ### 🎨 UI/UX
